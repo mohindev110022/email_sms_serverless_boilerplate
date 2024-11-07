@@ -1,0 +1,15 @@
+sendEmail:
+  handler: src/handlers/sendEmailHandler.sendWelcomeEmailHandler
+  events:
+    - sqs:
+        arn:
+          Fn::GetAtt:
+            - EmailQueue
+            - Arn
+        batchSize: 5
+    - http:
+        path: send-email
+        method: post
+        cors: true
+  memorySize: 128
+  timeout: 10

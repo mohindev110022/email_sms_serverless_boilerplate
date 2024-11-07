@@ -1,0 +1,23 @@
+service: serverless-email-service
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+  stage: dev
+  environment:
+    SMTP_HOST: ${file(./serverless/environment.yml):SMTP_HOST}
+    SMTP_PORT: ${file(./serverless/environment.yml):SMTP_PORT}
+    SMTP_USER: ${file(./serverless/environment.yml):SMTP_USER}
+    SMTP_PASS: ${file(./serverless/environment.yml):SMTP_PASS}
+
+functions:
+  ${file(./serverless/functions.yml)}
+
+resources:
+  ${file(./serverless/resources.yml)}
+
+package:
+  individually: true
+  include:
+    - src/templates/**

@@ -1,0 +1,7 @@
+Resources:
+  EmailQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: email-queue
+      VisibilityTimeout: 60
+      MessageRetentionPeriod: 1209600  # 14 days

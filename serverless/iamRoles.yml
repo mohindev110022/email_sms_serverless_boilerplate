@@ -1,0 +1,14 @@
+iamRoleStatements:
+  - Effect: "Allow"
+    Action:
+      - "sqs:ReceiveMessage"
+      - "sqs:DeleteMessage"
+      - "sqs:GetQueueAttributes"
+    Resource:
+      Fn::GetAtt:
+        - "EmailQueue"
+        - "Arn"
+  - Effect: "Allow"
+    Action:
+      - "ses:SendEmail"
+    Resource: "*"

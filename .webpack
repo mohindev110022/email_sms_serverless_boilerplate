@@ -1,0 +1,22 @@
+module.exports = {
+    entry: './src/handlers/sendEmailHandler.ts',
+    target: 'node',
+    mode: 'production',
+    externals: ['aws-sdk'], // Exclude AWS SDK (already available in Lambda)
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ],
+    },
+    resolve: {
+        extensions: ['.ts', '.js'],
+    },
+    output: {
+        path: __dirname + '/.webpack',
+        filename: 'handler.js',
+    },
+};
